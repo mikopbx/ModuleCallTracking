@@ -140,7 +140,7 @@ class WorkerCallTrackingAMI extends WorkerBase
         }
 
         if ($http_code !== 200) {
-            Util::sysLogMsg('CallTrackingAMI_EXCEPTION', "http_code: '{$http_code}'; result_data: '$result_request'");
+            Util::sysLogMsg('CallTrackingAMI_EXCEPTION', "http_code: '{$http_code}'; result_data: '$result_request'", LOG_ERR);
         }
     }
 
@@ -187,6 +187,6 @@ if (isset($argv) && count($argv) > 1) {
     } catch (\Throwable $e) {
         global $errorLogger;
         $errorLogger->captureException($e);
-        Util::sysLogMsg("{$workerClassname}_EXCEPTION", $e->getMessage());
+        Util::sysLogMsg("{$workerClassname}_EXCEPTION", $e->getMessage(), LOG_ERR);
     }
 }
