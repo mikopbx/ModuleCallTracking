@@ -1,9 +1,6 @@
 {
     "name": "mikopbx/modulecalltracking",
     "description": "ModuleCallTracking",
-    "require": {
-        "mikopbx/core": ">=2020.2.757"
-    },
     "autoload": {
         "psr-4": {
             "Modules\\ModuleCallTracking\\": "/"
@@ -56,7 +53,7 @@
     "config": {
         "sort-packages": true,
         "platform": {
-            "php": "7.4.6"
+            "php": "^7.4 || ^8.0"
         }
     }
 }
