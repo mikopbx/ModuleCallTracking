@@ -42,6 +42,20 @@ const ModuleCallTracking = {
 	cbBeforeSendForm(settings) {
 		const result = settings;
 		result.data = ModuleCallTracking.$formObj.form('get values');
+
+		// Fomantic's `form('get values')` does not reliably serialize toggle
+		// checkboxes on modern MikoPBX (unchecked toggles are omitted), so read
+		// each checkbox state explicitly and send it as '1' / '0'.
+		ModuleCallTracking.$formObj.find('.checkbox').each((index, obj) => {
+			const input = $(obj).find('input');
+			const id = input.attr('id');
+			if ($(obj).checkbox('is checked')) {
+				result.data[id] = '1';
+			} else {
+				result.data[id] = '0';
+			}
+		});
+
 		return result;
 	},
 	cbAfterSendForm() {
