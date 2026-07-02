@@ -65,7 +65,7 @@ class ModuleCallTrackingController extends BaseController
                 case "is_1c":
                 case "is_post":
                     if (array_key_exists($key, $data)) {
-                        $record->$key = ($data[$key] == 'on') ? "1" : "0";
+                        $record->$key = in_array($data[$key], ['on', '1'], true) ? "1" : "0";
                     } else {
                         $record->$key = "0";
                     }
